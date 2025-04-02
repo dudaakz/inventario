@@ -40,9 +40,10 @@ O layout foi inspirado no inventário do jogo *Minecraft*, organizando os itens 
 #### ii. Sobre o código PHP
 
 ##### 1. O que o código faz? Explicar as principais funcionalidades com exemplos de código.
-
 - **`login.php`**: Verifica as credenciais do usuário e inicia a sessão.
   - O login utiliza o método **POST** para enviar os dados de login de forma segura, sem exibi-los na URL.
+  - ![login_post png](https://github.com/user-attachments/assets/dfaf6401-b4c4-4886-8502-4f795e7632b3)
+
 ```php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
