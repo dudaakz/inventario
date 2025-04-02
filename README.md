@@ -64,7 +64,9 @@ header('Location: login.php');
 ```
 
 - **`inicio.php`**: Exibe os itens do inventário em uma grade semelhante ao *Minecraft*.
+- ![inicio_codigo png](https://github.com/user-attachments/assets/edeefbb2-2161-4e8f-a07f-08612a930a42)
 ```php
+
 <?php
 session_start();
 if (!isset($_SESSION['user'])) {
@@ -89,8 +91,10 @@ if (!isset($_SESSION['user'])) {
 </body>
 </html>
 ```
+-![sistema_rodando2 png](https://github.com/user-attachments/assets/38189aaf-03e1-4621-99d4-9d166f83074d)
+![sistema_rodando1 png](https://github.com/user-attachments/assets/243dd4f8-15a9-46b1-8bea-8935f8a48146)
+*Prints incluídos:**
 
-**Prints incluídos:**
 - Tela de login utilizando método **POST**.
 - Código da página `inicio.php`.
 - Prints do sistema rodando, mostrando o inventário funcionando corretamente.
