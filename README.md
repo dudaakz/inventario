@@ -1,131 +1,183 @@
 # inventario
 #  Inventário de minecraft
+Claro! Aqui está a **versão editada da documentação no estilo README.md para o seu GitHub**, combinando com o novo sistema atualizado (com imagens, sessão, cadastro e layout):
+
+---
+
+# Inventário de Minecraft - Projeto PHP
 
 ## 1. Introdução
 
 ### a. Qual o objetivo da atividade?
-O objetivo desta atividade é desenvolver um sistema de inventário para um jogo, implementando funcionalidades de login, exibição e manipulação de itens.
 
-#### i. O que é um inventário em um jogo? Qual a finalidade? Dê exemplos.
-Um inventário em um jogo é um sistema que permite ao jogador armazenar, visualizar e gerenciar itens adquiridos ao longo do jogo. Ele pode incluir armas, ferramentas, recursos e objetos colecionáveis. Exemplos de jogos com inventários incluem *Minecraft*, *The Legend of Zelda* e *Skyrim*.
-
-#### ii. Que tipos de sistemas utilizam essa funcionalidade? Dê exemplos.
-Além de jogos eletrônicos, sistemas como lojas virtuais, aplicações de gerenciamento de estoque e plataformas de e-commerce também utilizam funcionalidades de inventário. Exemplos incluem Amazon, Mercado Livre e sistemas de ERP.
-
-#### iii. Porque essa funcionalidade é importante?
-A funcionalidade de inventário é essencial para organizar e gerenciar itens dentro de um sistema, seja em um jogo ou em uma aplicação real. Ela melhora a experiência do usuário e otimiza a administração de recursos.
+O objetivo desta atividade é desenvolver um sistema de inventário inspirado em jogos como Minecraft e Zelda, permitindo **login, cadastro e gerenciamento de itens** com interface amigável e imagens dos objetos.
 
 ---
 
-## 2. A Implementação
+### i. O que é um inventário em um jogo? Qual a finalidade?
+
+Um **inventário** é uma funcionalidade que armazena e organiza os itens que o jogador coleta. Ele permite visualizar, equipar ou usar os objetos.\
+*Exemplo:* Em Minecraft, o jogador coleta pedras, madeiras e minérios, que ficam salvos no inventário.
+
+---
+
+### ii. Que tipos de sistemas utilizam essa funcionalidade?
+
+Além dos jogos, sistemas de controle de estoque, e-commerces e ERPs também usam inventário.\
+🛒 *Exemplo:* Amazon e Mercado Livre usam inventário para mostrar e controlar produtos à venda.
+
+---
+
+### iii. Por que essa funcionalidade é importante?
+
+Ela melhora a experiência do usuário, organiza os dados e permite o gerenciamento eficiente de recursos.
+
+---
+
+## 2. Implementação
 
 ### a. Front-end
 
-#### i. Quais ferramentas foram utilizadas (editores/linguagens)? Por quê? O que cada um deles faz?
-- **HTML**: Estrutura do site.
-- **CSS**: Estilização da interface.
-- **PHP**: Lógica do servidor e autenticação de usuários.
+#### i. Ferramentas utilizadas:
 
-O código foi desenvolvido em um editor de texto (VS Code), que oferece suporte para várias linguagens e facilita a edição do projeto.
+- **HTML/CSS**: Estrutura e visual da interface.
+- **Bootstrap**: Layout responsivo e moderno.
+- **Imagens em PNG**: Itens com fundo transparente para estética aprimorada.
+- **Editor**: VS Code – leve, com suporte a PHP e HTML.
 
-#### ii. Como o layout foi definido? Como a interface foi setorizada? Relação linhas x colunas.
-O layout foi inspirado no inventário do jogo *Minecraft*, organizando os itens em um formato de grade. Cada item ocupa um espaço fixo e tem uma imagem representativa.
+#### ii. Layout:
+
+Inspirado em Minecraft:
+
+- Itens apresentados em **tabela com imagens**.
+- Tela com fundo personalizado (imagem de Zelda).
+- Interface organizada com colunas: Imagem | Nome | Descrição | Quantidade.
+
+---
 
 ### b. Back-end
 
-#### i. Quais ferramentas foram utilizadas (editores/linguagens)? Por quê? O que cada um deles faz?
-- **PHP**: Gerenciamento de sessão, autenticação de usuários e controle do inventário.
-- **Sessions**: Para manter o estado do usuário logado.
+#### i. Ferramentas utilizadas:
 
-#### ii. Sobre o código PHP
+- **PHP**: Gerenciamento de sessões, autenticação e controle dos dados.
+- **Sessions**: Para manter o usuário logado.
+- **Arquivo .txt**: Armazena os itens de cada jogador (sem banco de dados).
 
-##### 1. O que o código faz? Explicar as principais funcionalidades com exemplos de código.
-- **`login.php`**: Verifica as credenciais do usuário e inicia a sessão.
-  - O login utiliza o método **POST** para enviar os dados de login de forma segura, sem exibi-los na URL.
-  - ![login_post png](https://github.com/user-attachments/assets/dfaf6401-b4c4-4886-8502-4f795e7632b3)
+---
+
+#### ii. Explicação do código PHP:
+
+##### 📥 `login.php`:
 
 ```php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['username'] == 'Duda' && $_POST['password'] == 'dudaakz') {
-        $_SESSION['user'] = 'Duda';
-        header('Location: inventario.php');
+        $_SESSION['usuario'] = 'Duda';
+        header('Location: inicio.php');
     } else {
         echo "Usuário ou senha incorretos.";
     }
 }
 ```
 
-- **`logout.php`**: Destroi a sessão e redireciona para a página de login.
+- Verifica usuário e senha usando `POST`.
+- Inicia sessão e redireciona ao inventário.
+
+---
+
+##### `logout.php`:
+
 ```php
 session_start();
 session_destroy();
 header('Location: login.php');
 ```
 
-- **`inicio.php`**: Exibe os itens do inventário em uma grade semelhante ao *Minecraft*.
-- ![inicio_codigo png](https://github.com/user-attachments/assets/edeefbb2-2161-4e8f-a07f-08612a930a42)
+- Encerra sessão e volta ao login.
+
+---
+
+##### `inicio.php`:
+
+- Lê o arquivo `inventario.txt` com os itens do jogador.
+- Exibe os dados com imagens:
+
 ```php
-
-<?php
-session_start();
-if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
-    exit();
-}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Inventário</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-    <h1>Bem-vindo ao Inventário</h1>
-    <div class="inventory-grid">
-        <div class="item">Pedra</div>
-        <div class="item">Madeira</div>
-        <div class="item">Ferro</div>
-    </div>
-    <a href="logout.php">Sair</a>
-</body>
-</html>
+<img src="<?php echo htmlspecialchars($item['imagem']); ?>" class="item-img">
 ```
--![sistema_rodando2 png](https://github.com/user-attachments/assets/38189aaf-03e1-4621-99d4-9d166f83074d)
-![sistema_rodando1 png](https://github.com/user-attachments/assets/243dd4f8-15a9-46b1-8bea-8935f8a48146)
-*Prints incluídos:**
 
-- Tela de login utilizando método **POST**.
-- Código da página `inicio.php`.
-- Prints do sistema rodando, mostrando o inventário funcionando corretamente.
+- Usa **imagem de fundo personalizada** de Minecraft.
+- Mostra o boneco do Minecraft ao lado do título.
+
+---
+
+##### ➕ `cadastro.php`:
+
+- Permite adicionar novos itens com nome, descrição, quantidade e URL da imagem.
 
 ---
 
 ## 3. Passo a passo de execução
 
-### a. Explicar o que deve ser feito para executar o projeto
-1. Subir os arquivos do projeto para um servidor local ( XAMPP).
-2. Acessar `http://localhost/trabalhoLuiz/login.php`.
-3. Fazer login com as credenciais (`Duda` / `dudaakz`).
-4. Navegar pelo inventário após o login.
+### a. Executando o projeto:
 
-### b. Explicar a hierarquia de diretórios do projeto
+1. Copie os arquivos para o diretório `htdocs` do XAMPP.
+2. Execute o Apache no painel XAMPP.
+3. Acesse:
+   ```
+   http://localhost/inventario/login.php
+   ```
+4. Faça login com:
+   - Usuário: `Duda`
+   - Senha: `dudaakz`
+5. Adicione novos itens com imagens e veja seu inventário.
+
+---
+
+### b. Estrutura de Pastas
+
 ```
-trabalhoLuiz/
-│-- index.php
+inventario/
 │-- login.php
 │-- logout.php
-│-- inventario.php
-│-- assets/
-│   ├── css/
+│-- inicio.php
+│-- cadastro.php
+│-- inventario.txt
+│-- styles.css
+│
+├── assets/
 │   ├── imagens/
-│-- includes/
-│-- prints/
-│   ├── login_post.png
-│   ├── inicio_codigo.png
-│   ├── sistema_rodando1.png
-│   ├── sistema_rodando2.png
+│   │   ├── diamante.png
+│   │   ├── madeira.png
+│   │   ├── espada.png
+│   └── css/
+│       └── styles.css
+│
+├── includes/
+│   └── funcoes.php
+│
+└── prints/
+    ├── login_post.png
+    ├── inicio_codigo.png
+    ├── sistema_rodando1.png
+    ├── sistema_rodando2.png
 ```
-A pasta `assets/` contém os arquivos de estilo e imagens. A pasta `includes/` pode conter códigos reutilizáveis, como conexões com banco de dados. A pasta `prints/` contém as capturas de tela do desenvolvimento e execução do projeto.
 
+---
 
+## 4. Prints do sistema
+
+Capturas de tela do sistema em funcionamento:*
+
+- Tela de login com autenticação.
+- Tela de inventário com imagem
+- Sistema completo funcionando com sessões e cadastro de itens.
+
+---
+
+![login](https://github.com/user-attachments/assets/c5a78f78-f5ae-4cb7-a3ac-9d9e7f43e2f7)
+
+![inicio](https://github.com/user-attachments/assets/b6b420d2-c12d-4037-8eac-a347c44d621f)
+
+![cadastro](https://github.com/user-attachments/assets/6b58ac07-bd1c-4178-8658-2e738890f5c2)
