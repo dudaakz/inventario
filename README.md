@@ -1,8 +1,5 @@
 # inventario
 #  Inventário de minecraft
-Claro! Aqui está a **versão editada da documentação no estilo README.md para o seu GitHub**, combinando com o novo sistema atualizado (com imagens, sessão, cadastro e layout):
-
----
 
 # Inventário de Minecraft - Projeto PHP
 
