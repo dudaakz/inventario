@@ -109,7 +109,7 @@ header('Location: login.php');
 
 ---
 
-##### ➕ `cadastro.php`:
+#####  `cadastro.php`:
 
 - Permite adicionar novos itens com nome, descrição, quantidade e URL da imagem.
 
