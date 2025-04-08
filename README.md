@@ -21,7 +21,7 @@ Um **inventário** é uma funcionalidade que armazena e organiza os itens que o 
 ### ii. Que tipos de sistemas utilizam essa funcionalidade?
 
 Além dos jogos, sistemas de controle de estoque, e-commerces e ERPs também usam inventário.\
-🛒 *Exemplo:* Amazon e Mercado Livre usam inventário para mostrar e controlar produtos à venda.
+ *Exemplo:* Amazon e Mercado Livre usam inventário para mostrar e controlar produtos à venda.
 
 ---
 
@@ -64,7 +64,7 @@ Inspirado em Minecraft:
 
 #### ii. Explicação do código PHP:
 
-##### 📥 `login.php`:
+#####  `login.php`:
 
 ```php
 session_start();
